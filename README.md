@@ -27,8 +27,7 @@ Both the client-side and the server-side has README files that explain the desig
 
 * Data Format supported: MM / DD / YYYY.
 
-* Data in the csv file will be valid (if you will send invalid data, you will get inside the returned csv file message that
-  the data for this specific employee is invalid - the idea is to ignore invalid data).
+* Data in the csv file will be valid (if you will send invalid data, invalid data would be ignored).
 
 * I added a tax tables list for supporting multiple years - the default tax table will be last one in the list (the idea that it will be the most relevant in the list from current year).
 
