@@ -1,0 +1,53 @@
+{
+  "name": "monthly-pay-slip-server",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsc --project ./",
+    "lint": "tsc --noEmit && eslint \"**/*.ts\" --quiet --fix",
+    "serve-debug": "nodemon --inspect dist/src/app.js",
+    "serve": "node dist/src/app.js",
+    "start": "npm run serve",
+    "test": "jest -c jest.unit.json",
+    "test-coverage": "jest --coverage -c jest.unit.json"
+  },
+  "dependencies": {
+    "JSONStream": "^1.3.5",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "errorhandler": "^1.5.1",
+    "event-stream": "^4.0.1",
+    "express": "~4.16.1",
+    "helmet": "^4.5.0",
+    "moment": "^2.29.1",
+    "morgan": "~1.9.1",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "@jest-mock/express": "^1.4.1",
+    "@types/cors": "^2.8.10",
+    "@types/dotenv": "^8.2.0",
+    "@types/eslint": "^7.2.10",
+    "@types/express": "^4.17.11",
+    "@types/faker": "^5.1.5",
+    "@types/helmet": "^4.0.0",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.41",
+    "@types/sinon": "^10.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "chai": "^4.3.4",
+    "eslint": "7.19.0",
+    "eslint-plugin-react": "^7.23.2",
+    "faker": "^5.1.0",
+    "jest": "^26.6.3",
+    "mock-express-response": "^0.3.0",
+    "nodemon": "2.0.7",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^10.2.0",
+    "ts-node-dev": "^1.1.6",
+    "tslint": "^6.1.3"
+  }
+}
