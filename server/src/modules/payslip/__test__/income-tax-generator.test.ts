@@ -5,7 +5,7 @@ describe('Income Tax Table Generator Unit Tests:',  () => {
     it('getIncomeTax should return valid income tax when tax year is null while picking the default tax table', () => {
 
         /* Act */
-        const result = incomeTaxGenerator.getIncomeTax(120000);
+        const result = incomeTaxGenerator.getIncomeTax(120000, new Date("2015-09-02"));
 
         /* Assert */
         expect(result).toEqual(2456);
@@ -15,7 +15,7 @@ describe('Income Tax Table Generator Unit Tests:',  () => {
         ' default tax table would be chosen', () => {
 
         /* Act */
-        const result = incomeTaxGenerator.getIncomeTax(120000,2015);
+        const result = incomeTaxGenerator.getIncomeTax(120000,new Date("2015-09-02"));
 
         /* Assert */
         expect(result).toEqual(2456);
@@ -25,7 +25,7 @@ describe('Income Tax Table Generator Unit Tests:',  () => {
         'and will choose the right tax table', () => {
 
         /* Act */
-        const result = incomeTaxGenerator.getIncomeTax(120000,2012);
+        const result = incomeTaxGenerator.getIncomeTax(120000, new Date("2012-09-02"));
 
         /* Assert */
         expect(result).toEqual(2696);

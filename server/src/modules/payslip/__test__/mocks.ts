@@ -9,7 +9,7 @@ export const getEmployeeDataRequest = ():EmployeesDetails => {
             "lastName": "Don",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {"day":1, "month":3, "year":2020 },
+            "paymentStartDate": new Date("2020-03-01"),
             "isValid": null,
         }]
     }
@@ -37,7 +37,7 @@ export const getEmployeeDetailsDataStartPaymentOfFirstDayOfTheMonth = ():Employe
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {day: 1, month: 5, year: 2012},
+            "paymentStartDate": new Date("2012-09-01"),
             "isValid": null,
         }]
     }
@@ -50,7 +50,7 @@ export const getEmployeeDetailsDataStartPaymentOfTwentyDayOfTheMonth = ():Employ
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {day: 20, month: 5, year: 2012},
+            "paymentStartDate": new Date("2012-05-20"),
             "isValid": null,
         }]
     }
@@ -63,7 +63,7 @@ export const getEmployeeDetailsDataStartPaymentOfFifthDayOfTheMonth = ():Employe
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {day: 5, month: 5, year: 2012},
+            "paymentStartDate": new Date("2012-08-05"),
             "isValid": null,
         }]
     };
@@ -76,7 +76,7 @@ export const getEmployeeDetailsDataWithoutTaxYear = ():EmployeesDetails => {
             "lastName": "Jordan",
             "annualSalary": -60050,
             "superRate": 9,
-            "paymentStartDate": {day: 5, month: 5, year: 2018},
+            "paymentStartDate": new Date("2018-05-05"),
             "isValid": null,
         }]
     }
@@ -89,7 +89,7 @@ export const getEmployeeDetailsDataWithNonValidAnnualSalary = ():EmployeesDetail
             "lastName": "Jordan",
             "annualSalary": -60050,
             "superRate": 9,
-            "paymentStartDate": {day: 5, month: 5, year: 2018},
+            "paymentStartDate": new Date("2018-05-05"),
             "isValid": null,
         }]
     }
@@ -106,7 +106,7 @@ export const getEmployeeDetailsDataWithNonValidSuperRateLessThanOne = ():Employe
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": -1,
-            "paymentStartDate": {day: 5, month: 5, year: 2018},
+            "paymentStartDate": new Date("2018-05-05"),
             "isValid": null,
         }]
     }
@@ -119,7 +119,7 @@ export const getEmployeeDetailsDataWithNonValidSuperRateBiggerThan50 = ():Employ
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 51,
-            "paymentStartDate": {day: 5, month: 5, year: 2018},
+            "paymentStartDate": new Date("2018-05-05"),
             "isValid": null,
         }]
     }
@@ -132,7 +132,7 @@ export const getEmployeeDetailsDataWithAnnualSalaryInStage5 = ():EmployeesDetail
             "lastName": "Jordan",
             "annualSalary": 210000,
             "superRate": 9,
-            "paymentStartDate": {year: 2018, month: 5, day: 1},
+            "paymentStartDate": new Date("2018-05-01"),
             "isValid": null,
         }]
     }

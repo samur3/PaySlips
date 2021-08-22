@@ -2,7 +2,8 @@ import {TaxTable} from "./models";
 
 export const TAX_TABLES:Array<TaxTable> = [
     {
-        year: "2012",
+        startYearFinancial: new Date("2012-07-01"),
+        endYearFinancial: new Date("2013-07-01"),
         data: [
             {"minAmount": 0, "maxAmount": 18200, "centsForOneDollar": 0},
             {"minAmount": 18201, "maxAmount": 37000, "centsForOneDollar": 0.19},
@@ -12,7 +13,8 @@ export const TAX_TABLES:Array<TaxTable> = [
         ]
     },
     {
-        year: "2021",
+        startYearFinancial: new Date("2021-07-01"),
+        endYearFinancial: new Date("2022-07-01"),
         data: [
             {"minAmount": 0, "maxAmount": 18200, "centsForOneDollar": 0},
             {"minAmount": 18201, "maxAmount": 45000, "centsForOneDollar": 0.19},

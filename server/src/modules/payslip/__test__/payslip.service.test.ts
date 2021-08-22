@@ -98,7 +98,7 @@ describe('Payslip Service Unit Tests:', function () {
         const result = payslipService.generatePaySlips(employeeDetailsData);
 
         /* Assert */
-        expect(result[0].payDate).toEqual('15 May 2012');
+        expect(result[0].payDate).toEqual('15 September 2012');
     });
 
     it('generatePaySlip should return the pay date of the end day of the month when the start payment date' +

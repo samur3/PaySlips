@@ -1,11 +1,5 @@
-export interface PaymentStartDate{
-    day: number;
-    month: number;
-    year: number;
-}
-
 export interface EmployeesDetails{
-    employeesDetailsData: Array<EmployeeDetails>;
+    employeesDetailsData: EmployeeDetails[];
 }
 
 export interface EmployeeDetails {
@@ -13,6 +7,6 @@ export interface EmployeeDetails {
     lastName: string;
     annualSalary: number;
     superRate: number;
-    paymentStartDate: PaymentStartDate;
+    paymentStartDate: Date;
     isValid: boolean;
 }
