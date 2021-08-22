@@ -6,12 +6,11 @@ describe("Parse CSV Data Unit Tests", () => {
 
         /* Arrange */
         const fileDataArr = [{
-            data: ["David","Rudd",60050,9,"3/01/2012"]
+            data: ["David","Rudd",60050,9,"2012-03-01"]
         }];
 
         /* Act */
         const parsedData = parseCSV.parseCSVData(fileDataArr);
-
         /* Assert */
         expect(parsedData?.employeesDetailsData).toBeTruthy();
         expect(parsedData?.employeesDetailsData.length).toEqual(1);
@@ -19,7 +18,7 @@ describe("Parse CSV Data Unit Tests", () => {
         expect(parsedData?.employeesDetailsData[0].lastName).toEqual("Rudd");
         expect(parsedData?.employeesDetailsData[0].annualSalary).toEqual(60050);
         expect(parsedData?.employeesDetailsData[0].superRate).toEqual(9);
-        expect(parsedData?.employeesDetailsData[0].paymentStartDate).toEqual({day: 1,month:3,year:2012});
+        expect(parsedData?.employeesDetailsData[0].paymentStartDate.toLocaleDateString()).toEqual("3/1/2012");
 
     });
 
@@ -27,7 +26,7 @@ describe("Parse CSV Data Unit Tests", () => {
 
         /* Arrange */
         const fileDataArr = [{
-            data: ["David","Rudd",-60050,9,"3/01/2012"]
+            data: ["David","Rudd",-60050,9,"2012-03-01"]
         }];
 
         /* Act */

@@ -3,14 +3,8 @@ export interface EmployeeDetails {
     lastName: string;
     annualSalary: number;
     superRate: number;
-    paymentStartDate: PaymentStartDate;
+    paymentStartDate: Date;
     isValid: boolean;
-}
-
-export interface PaymentStartDate{
-    day: number;
-    month: number;
-    year: number | null;
 }
 
 export interface EmployeesDetails{

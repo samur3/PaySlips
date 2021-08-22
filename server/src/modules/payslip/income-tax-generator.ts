@@ -1,13 +1,14 @@
 import { TAX_TABLES }   from "./taxTables";
-import {PaymentStartDate, TaxTableItem} from "./models";
+import {TaxTableItem} from "./models";
 
 function _getDefaultTaxTable():TaxTableItem[]{
     const length = TAX_TABLES.length;
     return TAX_TABLES[length-1].data;
 }
 
-function _getTaxTableByYear(paymentStartDate: PaymentStartDate):TaxTableItem[]{
-    const startDateTime = new Date(`"${paymentStartDate.year}-${paymentStartDate.month}-${paymentStartDate.day}"`).getTime();
+function _getTaxTableByYear(paymentStartDate: Date):TaxTableItem[]{
+    const date = `"${paymentStartDate.getFullYear()}-${paymentStartDate.getMonth()+1}-${paymentStartDate.getDate()}"`;
+    const startDateTime = new Date(date).getTime();
     const taxTable = TAX_TABLES.filter(taxTableItem => (taxTableItem.startYearFinancial.getTime() < startDateTime) &&
                                                        (taxTableItem.endYearFinancial.getTime() > startDateTime));
     if(taxTable && taxTable.length > 0) {
@@ -48,6 +49,6 @@ function _buildSetOfTotalStageTax(taxIncomeCustomTableData:TaxTableItem[]):Array
     return taxList;
 }
 
-export const getIncomeTax = (annualSalary,paymentStartDate:PaymentStartDate):number => {
+export const getIncomeTax = (annualSalary,paymentStartDate:Date):number => {
     return _getIncomeTaxByTable(annualSalary,_getTaxTableByYear(paymentStartDate) || _getDefaultTaxTable());
 }

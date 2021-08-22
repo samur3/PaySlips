@@ -1,6 +1,6 @@
 import moment                                               from "moment";
 import { getIncomeTax }                                     from "./income-tax-generator";
-import {EmployeeDetails, EmployeesDetails, PaymentStartDate, PaySlipData} from "./models";
+import {EmployeeDetails, EmployeesDetails, PaySlipData} from "./models";
 
 export const generatePaySlips = (data: EmployeesDetails):Array<PaySlipData> => {
     const parsedData = _parseEmployeesDetails(data);
@@ -29,11 +29,11 @@ function _parseEmployeeDetails(employeeDetails: EmployeeDetails): EmployeeDetail
         lastName = `${employeeDetails.lastName}`,
         annualSalary = +employeeDetails.annualSalary,
         superRate = +employeeDetails.superRate,
-        paymentStartDate = employeeDetails.paymentStartDate;
-    return firstName && lastName &&
+        paymentStartDate = new Date(employeeDetails.paymentStartDate)
+    return !!(firstName && lastName &&
         (annualSalary && annualSalary > 0) &&
         (superRate > 0 && superRate <= 50) &&
-        (paymentStartDate.day && paymentStartDate.month && paymentStartDate.year) ?
+        (paymentStartDate.getDate() && (paymentStartDate.getMonth()+1) && paymentStartDate.getFullYear())) ?
         {firstName,lastName,annualSalary,superRate,paymentStartDate,isValid: true} :
         {firstName,lastName,annualSalary,superRate,paymentStartDate,isValid: false};
 }
@@ -88,15 +88,15 @@ function _buildPaySlipData(employeeData: EmployeeDetails) : PaySlipData{
     }
 }
 
-function _getRelativeData(date:PaymentStartDate): number{
-    if(date.day === 1) return 1;
-    const numberOfDaysInMonth = moment(`${date.year}-${date.month}`, `YYYY-MM`).daysInMonth();
-    return ((numberOfDaysInMonth - date.day) + 1) / numberOfDaysInMonth;
+function _getRelativeData(date:Date): number{
+    if(date.getDate() === 1) return 1;
+    const numberOfDaysInMonth = moment(`${date.getFullYear()}-${date.getMonth()+1}`, `YYYY-MM`).daysInMonth();
+    return ((numberOfDaysInMonth - date.getDate()) + 1) / numberOfDaysInMonth;
 }
 
-function _getPayDate(date:PaymentStartDate): string{
-    if ( date.day >= 15 ) return moment().date(15).month(date.month).year(date.year).format('DD MMMM YYYY');
-    return moment().date(15).month(date.month-1).year(date.year).format('DD MMMM YYYY');
+function _getPayDate(date:Date): string{
+    if ( date.getDate() >= 15 ) return moment().date(15).month(date.getMonth()+1).year(date.getFullYear()).format('DD MMMM YYYY');
+    return moment().date(15).month(date.getMonth()).year(date.getFullYear()).format('DD MMMM YYYY');
 }
 
 
