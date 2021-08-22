@@ -31,7 +31,8 @@ export interface PaySlipData {
 }
 
 export interface TaxTable {
-    year: string;
+    startYearFinancial: Date;
+    endYearFinancial: Date;
     data: Array<TaxTableItem>
 }
 

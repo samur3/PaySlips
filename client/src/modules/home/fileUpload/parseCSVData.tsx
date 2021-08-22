@@ -35,7 +35,7 @@ const _checkAnnualSalary = (annualSalary: number | undefined) => {
 }
 
 const _checkSuperRate = (superRate: number | undefined) => {
-    return superRate && Number(superRate) && superRate > 0 && superRate < 50;
+    return superRate && Number(superRate) && superRate > 0 && superRate <= 50;
 }
 
 const _setPaymentStartDate = (dateString: string):PaymentStartDate => {

@@ -37,7 +37,7 @@ export const getEmployeeDetailsDataStartPaymentOfFirstDayOfTheMonth = ():Employe
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {day: 1, month: 5, year: 2012},
+            "paymentStartDate": {day: 1, month: 9, year: 2012},
             "isValid": null,
         }]
     }
@@ -63,7 +63,7 @@ export const getEmployeeDetailsDataStartPaymentOfFifthDayOfTheMonth = ():Employe
             "lastName": "Jordan",
             "annualSalary": 60050,
             "superRate": 9,
-            "paymentStartDate": {day: 5, month: 5, year: 2012},
+            "paymentStartDate": {day: 5, month: 8, year: 2012},
             "isValid": null,
         }]
     };

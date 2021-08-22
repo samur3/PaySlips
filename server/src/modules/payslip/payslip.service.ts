@@ -1,6 +1,6 @@
 import moment                                               from "moment";
 import { getIncomeTax }                                     from "./income-tax-generator";
-import { EmployeeDetails, EmployeesDetails, PaySlipData }   from "./models";
+import {EmployeeDetails, EmployeesDetails, PaymentStartDate, PaySlipData} from "./models";
 
 export const generatePaySlips = (data: EmployeesDetails):Array<PaySlipData> => {
     const parsedData = _parseEmployeesDetails(data);
@@ -9,11 +9,11 @@ export const generatePaySlips = (data: EmployeesDetails):Array<PaySlipData> => {
 }
 
 function _parseEmployeesDetails(data: EmployeesDetails): EmployeesDetails  {
+    if (!data) return null;
     const parsedData:EmployeesDetails = {
         employeesDetailsData: new Array<EmployeeDetails>()
     };
 
-    if (!data) return null;
     data.employeesDetailsData.forEach((employeeData) => {
         const employeeDetails = _parseEmployeeDetails(employeeData);
         if(employeeDetails) {
@@ -23,7 +23,7 @@ function _parseEmployeesDetails(data: EmployeesDetails): EmployeesDetails  {
     return parsedData;
 }
 
-function _parseEmployeeDetails(employeeDetails: EmployeeDetails): EmployeeDetails | null {
+function _parseEmployeeDetails(employeeDetails: EmployeeDetails): EmployeeDetails {
     const
         firstName = `${employeeDetails.firstName}`,
         lastName = `${employeeDetails.lastName}`,
@@ -32,7 +32,7 @@ function _parseEmployeeDetails(employeeDetails: EmployeeDetails): EmployeeDetail
         paymentStartDate = employeeDetails.paymentStartDate;
     return firstName && lastName &&
         (annualSalary && annualSalary > 0) &&
-        (superRate > 0 && superRate < 50) &&
+        (superRate > 0 && superRate <= 50) &&
         (paymentStartDate.day && paymentStartDate.month && paymentStartDate.year) ?
         {firstName,lastName,annualSalary,superRate,paymentStartDate,isValid: true} :
         {firstName,lastName,annualSalary,superRate,paymentStartDate,isValid: false};
@@ -53,7 +53,7 @@ function _buildPaySlipsData (employeesDetails: EmployeesDetails) : Array<PaySlip
     return paySlipsData;
 }
 
-function getInvalidPaySlipDataResponse(employeeData): PaySlipData{
+function getInvalidPaySlipDataResponse(employeeData:EmployeeDetails): PaySlipData{
     return {
         employee: `${employeeData.firstName} ${employeeData.lastName}`,
         payDate: _getPayDate(employeeData.paymentStartDate),
@@ -71,7 +71,7 @@ function getInvalidPaySlipDataResponse(employeeData): PaySlipData{
 function _buildPaySlipData(employeeData: EmployeeDetails) : PaySlipData{
     const relativeData = _getRelativeData(employeeData.paymentStartDate);
     const grossIncome = Math.round((employeeData.annualSalary / 12) * relativeData);
-    const incomeTax = Math.round(getIncomeTax(employeeData.annualSalary, employeeData.paymentStartDate.year) * relativeData);
+    const incomeTax = Math.round(getIncomeTax(employeeData.annualSalary, employeeData.paymentStartDate) * relativeData);
     const netIncome = grossIncome - incomeTax;
     const superValue = Math.round(grossIncome * (employeeData.superRate / 100));
     return {
@@ -88,13 +88,13 @@ function _buildPaySlipData(employeeData: EmployeeDetails) : PaySlipData{
     }
 }
 
-function _getRelativeData(date): number{
+function _getRelativeData(date:PaymentStartDate): number{
     if(date.day === 1) return 1;
     const numberOfDaysInMonth = moment(`${date.year}-${date.month}`, `YYYY-MM`).daysInMonth();
     return ((numberOfDaysInMonth - date.day) + 1) / numberOfDaysInMonth;
 }
 
-function _getPayDate(date): string{
+function _getPayDate(date:PaymentStartDate): string{
     if ( date.day >= 15 ) return moment().date(15).month(date.month).year(date.year).format('DD MMMM YYYY');
     return moment().date(15).month(date.month-1).year(date.year).format('DD MMMM YYYY');
 }
