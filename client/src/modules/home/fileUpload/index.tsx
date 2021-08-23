@@ -62,7 +62,6 @@ export const FileUpload = ({fileData}: FileUploadProps) => {
                     onDrop={handleOnDrop}
                     addRemoveButton
                     removeButtonColor='#659cef'
-                    key={"aaa"}
                     onRemoveFile={handleOnRemoveFile}
                 >
                     <span id="drop">Drop CSV file here or click to upload.</span>
