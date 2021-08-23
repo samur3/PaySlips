@@ -16,9 +16,7 @@ function _parseEmployeesDetails(data: EmployeesDetails): EmployeesDetails  {
 
     data.employeesDetailsData.forEach((employeeData) => {
         const employeeDetails = _parseEmployeeDetails(employeeData);
-        if(employeeDetails) {
-            parsedData.employeesDetailsData.push(employeeDetails)
-        }
+        parsedData.employeesDetailsData.push(employeeDetails);
     })
     return parsedData;
 }
